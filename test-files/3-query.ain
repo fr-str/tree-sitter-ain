@@ -1,0 +1,9 @@
+[host]
+http://localhost:80/api/dupa
+
+[Query]
+dupa=true
+one=1
+one=1.123
+text=dupa
+text=

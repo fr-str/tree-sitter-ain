@@ -1,0 +1,40 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "ain",
+      "camelcase": "Ain",
+      "title": "Ain",
+      "scope": "source.ain",
+      "path":".",
+      "file-types": [
+        "ain"
+      ],
+      "injection-regex": "ain",
+      "highlights":"queries/highlights.scm",
+      "class-name": "TreeSitterAin"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Ain grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "fr-str"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/fr-str/tree-sitter-ain"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}
