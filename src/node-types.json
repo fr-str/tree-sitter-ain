@@ -70,6 +70,10 @@
       "required": true,
       "types": [
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "header_key_val",
           "named": true
         },
@@ -89,6 +93,10 @@
       "required": true,
       "types": [
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "host_key",
           "named": true
         },
@@ -107,6 +115,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
         {
           "type": "json_value",
           "named": true
@@ -141,6 +153,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
         {
           "type": "json_pair",
           "named": true
@@ -211,6 +227,10 @@
       "required": true,
       "types": [
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "method_key",
           "named": true
         },
@@ -231,6 +251,10 @@
       "required": false,
       "types": [
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "section",
           "named": true
         }
@@ -245,6 +269,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
         {
           "type": "query_key_val",
           "named": true
@@ -421,6 +449,10 @@
   },
   {
     "type": "bool",
+    "named": true
+  },
+  {
+    "type": "comment",
     "named": true
   },
   {

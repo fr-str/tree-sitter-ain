@@ -7,6 +7,7 @@
 (bool) @constant.builtin
 (number) @number
 (identifier) @variable
+(comment) @comment
 
 (query_any) @string
 

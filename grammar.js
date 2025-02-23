@@ -10,13 +10,16 @@
 module.exports = grammar({
     name: 'ain',
   conflicts: ($ => [
-    [$.body]
+    [$.body],
+    [$.headers],
+    [$.host],
+    [$.method],
+    [$.query]
   ]),
   rules: {
     // The main program consists of multiple sections
     program: $ => seq(
-      repeat($.section)
-      // optional($.body_section)
+      repeat(choice($.comment,$.section)),
     ),
 
     // A section starts with a keyword in brackets followed by content
@@ -35,7 +38,7 @@ module.exports = grammar({
       '[',
       $.host_key,
       ']',
-       optional($.value)
+       optional(choice($.comment,$.value))
      ),
     host_key:$=>new RustRegex('(?i)host'), 
 
@@ -43,7 +46,7 @@ module.exports = grammar({
       '[',
       $.querys_key,
       ']',
-       optional(repeat($.query_key_val))
+       optional(repeat(choice($.comment,$.query_key_val)))
      ),
     querys_key:$=>new RustRegex('(?i)query'),
 
@@ -63,7 +66,7 @@ module.exports = grammar({
       '[',
       $.headers_key,
       ']',
-      optional(repeat($.header_key_val))
+      optional(repeat(choice($.comment,$.header_key_val)))
     ),
     headers_key:$=>new RustRegex('(?i)headers'),
 
@@ -80,7 +83,7 @@ module.exports = grammar({
       '[',
       $.method_key,
       ']',
-      optional($.value)
+       optional(choice($.comment,$.value))
     ),
     method_key: $=> new RustRegex('(?i)method'),
 
@@ -102,20 +105,25 @@ module.exports = grammar({
       $.json_array
     ),
 
+    json_comment: $=> /#[^,]+/,
     json_object: $ => seq(
       '{',
+      optional($.comment),
       optional(seq(
         $.json_pair,
-        repeat(seq(',', $.json_pair))
+        optional(','),
+        repeat(seq(choice($.comment,$.json_pair),optional(',')))
       )),
       '}'
     ),
 
     json_array: $ => seq(
       '[',
+      optional($.comment),
       optional(seq(
         $.json_value,
-        repeat(seq(',', $.json_value))
+        optional(','),
+        repeat(seq(choice($.comment,$.json_value),optional(',')))
       )),
       ']'
     ),
@@ -171,7 +179,7 @@ module.exports = grammar({
     identifier: $=> new RustRegex('(?i)[0-9a-z/_-]+'),
     bool: $=> token(prec(2,new RustRegex('(?i)true|false'))),
     _: $ => /\s+/,
-    comment: $ => /#.*/
+    comment: $ => token(prec(1,/#.*/))
   }
 });
 
