@@ -10,7 +10,6 @@
 module.exports = grammar({
     name: 'ain',
   conflicts: ($ => [
-    [$.query_key_val],
     [$.body]
   ]),
   rules: {
@@ -27,68 +26,67 @@ module.exports = grammar({
       $.headers,
       $.method,
       $.body,
-      //   new RustRegex('(?i)config'),
-      //   optional($.value)),
-      // seq(
-      //   new RustRegex('(?i)backend'),
-      //   optional($.value)),
-      // seq(
-      //   new RustRegex('(?i)backendoptions'),
-      //   optional($.value)),
+      // $.config
+      // $.backend
+      // $.backendoptions
       ),
 
     host: $ => seq(
       '[',
-       new RustRegex('(?i)host'), 
+      $.host_key,
       ']',
        optional($.value)
      ),
+    host_key:$=>new RustRegex('(?i)host'), 
 
     query: $=> seq(
       '[',
-       new RustRegex('(?i)query'),
+      $.querys_key,
       ']',
        optional(repeat($.query_key_val))
      ),
+    querys_key:$=>new RustRegex('(?i)query'),
 
-    query_key: $=> $.string,
-    query_val: $=> choice(
+    query_key: $=> $.identifier,
+    query_val: $=> seq('=',optional(choice(
       $.bool,
       $.number,
-      $.value
-    ),
+      $.query_any
+    ))),
+    query_any: $=> /(.+)?/,
     query_key_val: $=> seq(
       $.query_key,
-      '=',
       optional($.query_val),
     ),
 
     headers: $=> seq(
       '[',
-      new RustRegex('(?i)headers'),
+      $.headers_key,
       ']',
       optional(repeat($.header_key_val))
     ),
+    headers_key:$=>new RustRegex('(?i)headers'),
 
-    header_key: $=> $.string,
-    header_val: $=> $.value,
+    header_key: $=> $.identifier,
+    header_val: $=> /(.+)?/,
     header_key_val: $=> seq(
       $.header_key,
       ':',
       optional(' '),
-      $.header_val
+      optional($.header_val)
     ),
 
     method: $=> seq(
       '[',
-      new RustRegex('(?i)method'),
+      $.method_key,
       ']',
       optional($.value)
     ),
+    method_key: $=> new RustRegex('(?i)method'),
 
     body: $=> seq(
       '[',
-      new RustRegex('(?i)body'),
+      $.body_key,
       ']',
       optional(choice(
         $.json_body,
@@ -96,6 +94,7 @@ module.exports = grammar({
         // $.plain_body,
         ))
     ),
+    body_key:$ => new RustRegex('(?i)body'),
 
     // JSON body parsing
     json_body: $ => choice(
@@ -132,11 +131,12 @@ module.exports = grammar({
       $.json_array,
       $.json_string,
       $.json_number,
-      'true',
-      'false',
-      'null'
+      $.json_bool,
+      $.json_null
     ),
 
+    json_bool: $=> /true|false/,
+    json_null: $=> 'null',
     json_string: $ => /"(?:[^"\\]|\\.)*"/,
     json_number: $ => /-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?/,
 
@@ -167,8 +167,8 @@ module.exports = grammar({
 
     // Base rules
     value: $ => /[^\n]+/,
-    number: $=> /[0-9.]+/,
-    string: $=> new RustRegex('(?i)[0-9a-z/_-]+'),
+    number: $=> token(prec(1,/[0-9.]+/)),
+    identifier: $=> new RustRegex('(?i)[0-9a-z/_-]+'),
     bool: $=> token(prec(2,new RustRegex('(?i)true|false'))),
     _: $ => /\s+/,
     comment: $ => /#.*/

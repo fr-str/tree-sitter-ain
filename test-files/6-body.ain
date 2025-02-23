@@ -5,9 +5,10 @@
   "user_name": "dupa user",
   "report_name": "dupa test",
   "requester_id": 42069,
+  "requester_bool": true,
   "audiences_custom": [],
   "audiences_custom": {}
 }
 
 [body]
-csrf_token%3DHTjCMkbBYox9dfK3EXFALavs%26declaration_pk%3DMPDiSx7LUdkX%26work_done_summary%3Dcode+review%26declared_breaks_duration%3D0%26declared_date%3D%26declared_time%3D%26declared_time_explanation%3D%26action%3Dset-current-time
+csrf_token%3DHTjCMkbBYox9dfK3EXFALavs%26declaration_pk%3DMPDiSx7LUdkX%26work_done_summary%3Dcode+review%26declared_breaks_duration%3D0%26declared_date%3D%26declared_time%3D%26declared_time_explanation%3D%26action%3Dset-current-time%26somethig%3Dtrue

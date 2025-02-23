@@ -1,0 +1,47 @@
+[Host]
+http://localhost:80/api/dupa
+
+[method]
+POST
+
+[Query]
+dupa=true
+one=1
+one=1.123
+text=dupa
+text=
+
+[headers]
+server: nginx
+date: Fri, 21 Feb 2025 17:25:37 GMT
+content-type: application/javascript; charset=utf-8
+content-length: 17907
+last-modified: Thu, 23 Jan 2025 13:54:14 GMT
+vary: Accept-Encoding
+etag: "67924a06-45f3"
+content-encoding: br
+expires: Sat, 21 Feb 2026 17:25:37 GMT
+cache-control: max-age=31536000
+x-frame-options: SAMEORIGIN
+x-xss-protection: 1; mode=block
+x-content-type-options: nosniff
+referrer-policy: no-referrer-when-downgrade
+content-security-policy: default-src 'self' 'unsafe-eval' http: https: data: blob: 'unsafe-inline'
+service-worker-allowed: 
+cross-origin-opener-policy: same-origin
+cross-origin-embedder-policy: credentialless
+X-Firefox-Spdy: h2
+
+[body]
+{
+  "id": 187,
+  "user_id": 8937,
+  "user_name": "dupa user",
+  "report_name": "dupa test",
+  "requester_id": 42069,
+  "requester_bool": true,
+  "requester_null": null,
+  "audiences_custom": [],
+  "audiences_custom": {}
+}
+
