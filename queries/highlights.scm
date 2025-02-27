@@ -3,6 +3,10 @@
 (method_key) @keyword
 (querys_key) @keyword
 (headers_key) @keyword
+(config_key) @keyword
+
+(config_param) @variable
+(config_value) @string
 
 (bool) @constant.builtin
 (number) @number
