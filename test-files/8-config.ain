@@ -1,0 +1,4 @@
+[Config]
+Timeout=3
+# Comment within config section
+QueryDelim=;

@@ -1,6 +1,9 @@
 [Host]
 http://localhost:80/api/dupa
 
+[config]
+timeout=3
+
 [method]
 POST
 

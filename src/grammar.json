@@ -45,6 +45,10 @@
         {
           "type": "SYMBOL",
           "name": "body"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "config"
         }
       ]
     },
@@ -702,6 +706,76 @@
         }
       ]
     },
+    "config": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "SYMBOL",
+          "name": "config_key"
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "comment"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "config_setting"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "config_key": {
+      "type": "PATTERN",
+      "value": "(?i)config"
+    },
+    "config_setting": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "config_param"
+        },
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "SYMBOL",
+          "name": "config_value"
+        }
+      ]
+    },
+    "config_param": {
+      "type": "PATTERN",
+      "value": "(?i)[a-z0-9_]+"
+    },
+    "config_value": {
+      "type": "PATTERN",
+      "value": "[^#\\n]+"
+    },
     "value": {
       "type": "PATTERN",
       "value": "[^\\n]+"
@@ -769,6 +843,9 @@
     ],
     [
       "query"
+    ],
+    [
+      "config"
     ]
   ],
   "precedences": [],

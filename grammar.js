@@ -14,7 +14,8 @@ module.exports = grammar({
     [$.headers],
     [$.host],
     [$.method],
-    [$.query]
+    [$.query],
+    [$.config]
   ]),
   rules: {
     // The main program consists of multiple sections
@@ -29,7 +30,7 @@ module.exports = grammar({
       $.headers,
       $.method,
       $.body,
-      // $.config
+      $.config
       // $.backend
       // $.backendoptions
       ),
@@ -172,6 +173,22 @@ module.exports = grammar({
       optional($.urlencoded_val)
      ),
       
+
+    // Config section
+    config: $ => seq(
+      '[',
+      $.config_key,
+      ']',
+      optional(repeat(choice($.comment, $.config_setting)))
+    ),
+    config_key: $ => new RustRegex('(?i)config'),
+    config_setting: $ => seq(
+      $.config_param,
+      '=',
+      $.config_value
+    ),
+    config_param: $ => new RustRegex('(?i)[a-z0-9_]+'),
+    config_value: $ => /[^#\n]+/,
 
     // Base rules
     value: $ => /[^\n]+/,

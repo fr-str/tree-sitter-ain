@@ -23,6 +23,48 @@
     }
   },
   {
+    "type": "config",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "config_key",
+          "named": true
+        },
+        {
+          "type": "config_setting",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "config_setting",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "config_param",
+          "named": true
+        },
+        {
+          "type": "config_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "header_key",
     "named": true,
     "fields": {},
@@ -359,6 +401,10 @@
           "named": true
         },
         {
+          "type": "config",
+          "named": true
+        },
+        {
           "type": "headers",
           "named": true
         },
@@ -453,6 +499,18 @@
   },
   {
     "type": "comment",
+    "named": true
+  },
+  {
+    "type": "config_key",
+    "named": true
+  },
+  {
+    "type": "config_param",
+    "named": true
+  },
+  {
+    "type": "config_value",
     "named": true
   },
   {
