@@ -15,6 +15,8 @@ module.exports = grammar({
     [$.host],
     [$.method],
     [$.query],
+    [$.backend],
+    [$.backendoptions],
     [$.config]
   ]),
   rules: {
@@ -30,9 +32,9 @@ module.exports = grammar({
       $.headers,
       $.method,
       $.body,
-      $.config
-      // $.backend
-      // $.backendoptions
+      $.config,
+      $.backend,
+      $.backendoptions
       ),
 
     host: $ => seq(
@@ -173,6 +175,25 @@ module.exports = grammar({
       optional($.urlencoded_val)
      ),
       
+
+    // Backend section
+    backend: $ => seq(
+      '[',
+      $.backend_key,
+      ']',
+      optional(choice($.comment, $.value))
+    ),
+    backend_key: $ => new RustRegex('(?i)backend'),
+
+    // Backend options section
+    backendoptions: $ => seq(
+      '[',
+      $.backendoptions_key,
+      ']',
+      optional(repeat(choice($.comment, $.backendoption)))
+    ),
+    backendoptions_key: $ => new RustRegex('(?i)backendoptions'),
+    backendoption: $ => /[^#\n]+/,
 
     // Config section
     config: $ => seq(

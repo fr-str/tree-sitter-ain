@@ -4,8 +4,11 @@
 (querys_key) @keyword
 (headers_key) @keyword
 (config_key) @keyword
+(backend_key) @keyword
+(backendoptions_key) @keyword
 
 (config_param) @variable
+(backendoption) @property
 (config_value) @string
 
 (bool) @constant.builtin

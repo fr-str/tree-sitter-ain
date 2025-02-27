@@ -1,5 +1,56 @@
 [
   {
+    "type": "backend",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "backend_key",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "backendoption",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "backendoptions",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "backendoption",
+          "named": true
+        },
+        {
+          "type": "backendoptions_key",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "body",
     "named": true,
     "fields": {},
@@ -63,6 +114,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "config_value",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "header_key",
@@ -397,6 +453,14 @@
       "required": true,
       "types": [
         {
+          "type": "backend",
+          "named": true
+        },
+        {
+          "type": "backendoptions",
+          "named": true
+        },
+        {
           "type": "body",
           "named": true
         },
@@ -490,6 +554,14 @@
     "named": false
   },
   {
+    "type": "backend_key",
+    "named": true
+  },
+  {
+    "type": "backendoptions_key",
+    "named": true
+  },
+  {
     "type": "body_key",
     "named": true
   },
@@ -507,10 +579,6 @@
   },
   {
     "type": "config_param",
-    "named": true
-  },
-  {
-    "type": "config_value",
     "named": true
   },
   {

@@ -1,0 +1,8 @@
+# Backend and BackendOptions test file
+[Backend]
+curl
+
+[BackendOptions]
+-sS   # Makes curl disable its progress bar in a pipe
+--connect-timeout 30
+-L    # Follow redirects

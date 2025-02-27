@@ -49,6 +49,14 @@
         {
           "type": "SYMBOL",
           "name": "config"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "backend"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "backendoptions"
         }
       ]
     },
@@ -706,6 +714,97 @@
         }
       ]
     },
+    "backend": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "SYMBOL",
+          "name": "backend_key"
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "comment"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "value"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "backend_key": {
+      "type": "PATTERN",
+      "value": "(?i)backend"
+    },
+    "backendoptions": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "SYMBOL",
+          "name": "backendoptions_key"
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "comment"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "backendoption"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "backendoptions_key": {
+      "type": "PATTERN",
+      "value": "(?i)backendoptions"
+    },
+    "backendoption": {
+      "type": "PATTERN",
+      "value": "[^#\\n]+"
+    },
     "config": {
       "type": "SEQ",
       "members": [
@@ -843,6 +942,12 @@
     ],
     [
       "query"
+    ],
+    [
+      "backend"
+    ],
+    [
+      "backendoptions"
     ],
     [
       "config"
